@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 360px;
+      max-width: 360px;
+      padding: 14px 14px 12px;
+      background: #111;
+      color: #e8e8e8;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 13px;
+    }
+    h1 { font-size: 15px; color: #ff3b30; margin-bottom: 6px; letter-spacing: .3px; }
+    h2 { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px; margin-top: 12px; }
+    a { color: #4fc3f7; text-decoration: none; word-break: break-all; }
+    a:hover { text-decoration: underline; }
+
+    .qr-wrap {
+      display: flex;
+      justify-content: center;
+      background: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      margin: 6px 0 8px;
+    }
+    .qr-wrap img {
+      width: 100%;
+      max-width: 260px;
+      height: auto;
+      display: block;
+      image-rendering: pixelated;
+    }
+    .qr-wrap .empty {
+      width: 260px; height: 260px;
+      display: flex; align-items: center; justify-content: center;
+      color: #888; font-size: 12px; text-align: center; padding: 12px;
+    }
+
+    .url-row { display: flex; align-items: center; gap: 6px; }
+    .url-row code {
+      flex: 1;
+      background: #1c1c1e;
+      padding: 7px 9px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      color: #cfe9ff;
+      word-break: break-all;
+    }
+    .btn {
+      background: #1c1c1e;
+      border: 1px solid #3a3a3c;
+      color: #e8e8e8;
+      padding: 7px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-family: inherit;
+    }
+    .btn:hover { background: #2a2a2a; }
+    .btn:active { transform: scale(.97); }
+    .btn.primary { background: #b81d24; border-color: #b81d24; color: #fff; }
+    .btn.primary:hover { background: #d92730; }
+    .btn.row { flex: 1; }
+
+    .row { display: flex; gap: 6px; margin-top: 8px; }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      background: #1c1c1e;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+    .dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: #555;
+      flex-shrink: 0;
+    }
+    .dot.green { background: #34c759; box-shadow: 0 0 6px #34c75988; }
+    .dot.red   { background: #ff3b30; }
+    .dot.amber { background: #ff9f0a; }
+    .dot.blue  { background: #4fc3f7; }
+
+    .hint { font-size: 11px; color: #888; line-height: 1.4; margin-top: 6px; }
+    .hint.err { color: #ff6b6b; }
+    .hint.ok  { color: #51cf66; }
+
+    pre.logs {
+      background: #0a0a0a;
+      color: #cfe9ff;
+      padding: 8px;
+      border-radius: 6px;
+      font-size: 10.5px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      max-height: 120px;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+      margin-top: 4px;
+      border: 1px solid #1f1f1f;
+    }
+    hr { border: none; border-top: 1px solid #222; margin: 12px 0 0; }
+
+    .yt-tabs { font-size: 11px; color: #aaa; margin-top: 4px; max-height: 50px; overflow: auto; }
+    .yt-tab { padding: 2px 0; border-bottom: 1px dashed #222; }
+    .yt-tab:last-child { border-bottom: none; }
+    .yt-tab.active { color: #fff; }
+  </style>
+</head>
+<body>
+
+<h1>YTS Remote</h1>
+
+<div class="qr-wrap" id="qrWrap">
+  <div class="empty" id="qrEmpty">Detecting server…</div>
+</div>
+
+<div class="url-row">
+  <code id="phoneUrl">…</code>
+  <button class="btn" id="copyBtn" title="Copy URL">Copy</button>
+</div>
+
+<div class="row">
+  <button class="btn primary row" id="openBtn">Open on this device</button>
+</div>
+
+<div class="row">
+  <button class="btn row" id="reconnectBtn">Reconnect</button>
+  <button class="btn row" id="testBtn">Test +200ms</button>
+</div>
+
+<h2>Status</h2>
+<div class="status"><span class="dot" id="serverDot"></span><span id="serverText">Server: …</span></div>
+<div class="status"><span class="dot" id="extDot"></span><span id="extText">Extension: …</span></div>
+
+<h2>YouTube tabs</h2>
+<div class="yt-tabs" id="ytTabs">none</div>
+
+<h2>Recent log</h2>
+<pre class="logs" id="logs">(no entries yet)</pre>
+
+<p class="hint" id="hint">If the QR never appears, run <code>npm install</code> in this folder, then <code>npm start</code>.</p>
+
+<script src="popup.js"></script>
+</body>
+</html>

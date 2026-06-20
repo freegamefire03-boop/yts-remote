@@ -1,0 +1,55 @@
+:root {
+  --ms-overlay-top: 24px;
+  --ms-overlay-left: 24px;
+}
+
+#ms-shift-overlay {
+  position: fixed;
+  top: var(--ms-overlay-top);
+  left: var(--ms-overlay-left);
+  z-index: 2147483647;
+  display: none;
+}
+
+#ms-shift-overlay input {
+  width: 280px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  outline: none;
+  font-family: monospace;
+  caret-color: #fff;
+}
+
+#ms-shift-overlay input:focus {
+  border-color: #fff;
+}
+
+#ms-shift-overlay input.error {
+  border-color: #ff4444;
+}
+
+#ms-gap-applied {
+  position: fixed;
+  top: var(--ms-overlay-top);
+  left: var(--ms-overlay-left);
+  z-index: 2147483647;
+  padding: 10px 16px;
+  background: #1b5e20;
+  color: #a5d6a7;
+  font-family: monospace;
+  font-size: 15px;
+  border: 2px solid #4caf50;
+  border-radius: 4px;
+  animation: ms-fadeOut 2.5s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes ms-fadeOut {
+  0% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; }
+}

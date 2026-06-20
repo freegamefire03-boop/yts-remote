@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "YTS Remote — YouTube Timeline Shifter",
+  "version": "1.1.0",
+  "description": "Nudge YouTube video timeline forward/backward by exact ms via shortcut, popup, or phone remote.",
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "tabs"
+  ],
+  "host_permissions": [
+    "*://*.youtube.com/*",
+    "http://localhost:3000/*",
+    "http://127.0.0.1:3000/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "commands": {
+    "toggle-shift-overlay": {
+      "suggested_key": { "default": "Alt+Shift+W" },
+      "description": "Toggle the millisecond shift overlay on YouTube"
+    },
+    "apply-gap": {
+      "suggested_key": { "default": "Ctrl+Shift+E" },
+      "description": "Show gap apply overlay on YouTube"
+    }
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "YTS Remote"
+  },
+  "icons": {
+    "128": "icons/icon128.png"
+  }
+}

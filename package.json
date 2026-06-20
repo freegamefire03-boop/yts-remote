@@ -1,0 +1,15 @@
+{
+  "name": "yts-remote",
+  "version": "2.1.0",
+  "private": true,
+  "description": "YTS Remote — phone-based remote control for the YouTube Timeline Shifter Chrome extension.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "start:lan": "node server.js"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.3",
+    "ws": "^8.16.0"
+  }
+}
